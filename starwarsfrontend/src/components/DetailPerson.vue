@@ -1,5 +1,5 @@
 <template>
-  <div class="auto-size">
+  <div>
     <h1>{{ person.name }}</h1>
     <Starship
       v-for="starship in person.starships"
@@ -12,7 +12,7 @@
       :key="vehicle.name"
       :vehicle="vehicle"
     ></Vehicle>
-    <b-button @click="$emit('close')"
+    <b-button variant="danger" @click="$emit('close')"
       ><b-icon icon="x-square"></b-icon
     ></b-button>
   </div>
@@ -37,9 +37,4 @@ export default {
 };
 </script>
 
-<style>
-.auto-size {
-  width: auto;
-  height: auto;
-}
-</style>
+<style></style>

@@ -113,7 +113,7 @@ export default {
       this.$modal.show(
         DetailPerson,
         { person: this.person },
-        { draggable: true },
+        { draggable: true, scrollable: true },
         { height: "auto" }
       );
     }
