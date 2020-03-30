@@ -51,7 +51,6 @@ export default {
   created() {
     axios.get(this.person.homeworld).then(res => {
       this.person.homeworld = res.data;
-      this.loading = false;
     });
 
     axios.get(this.person.species).then(res => {
@@ -64,6 +63,7 @@ export default {
 
     axios.get(this.person.vehicles).then(res => {
       this.person.vehicles = res.data;
+      this.loading = false;
     });
   },
   mounted() {
