@@ -15,7 +15,9 @@
           </b-col>
           <b-col md="6">
             <b-card-body :title="person.name">
-              <b-card-text> Their homeworld is {{ planet.name }}</b-card-text>
+              <b-card-text>
+                Their homeworld is {{ person.homeworld.name }}</b-card-text
+              >
               <b-button pill variant="info" @click="showDetailedView"
                 >Detailed view</b-button
               >
@@ -41,7 +43,6 @@ export default {
   },
   data() {
     return {
-      planet: undefined,
       imageLink:
         "https://vignette.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755",
       loading: true
@@ -49,8 +50,20 @@ export default {
   },
   created() {
     axios.get(this.person.homeworld).then(res => {
-      this.planet = res.data;
+      this.person.homeworld = res.data;
       this.loading = false;
+    });
+
+    axios.get(this.person.species).then(res => {
+      this.person.species = res.data;
+    });
+
+    axios.get(this.person.starships).then(res => {
+      this.person.starships = res.data;
+    });
+
+    axios.get(this.person.vehicles).then(res => {
+      this.person.vehicles = res.data;
     });
   },
   mounted() {
