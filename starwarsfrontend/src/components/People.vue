@@ -14,11 +14,8 @@
             ></b-card-img>
           </b-col>
           <b-col md="6">
-            <b-card-body title="Horizontal Card">
-              <b-card-text
-                >{{ person.name }} <br />
-                Their homeworld is {{ planet.name }}</b-card-text
-              >
+            <b-card-body :title="person.name">
+              <b-card-text> Their homeworld is {{ planet.name }}</b-card-text>
               <b-button pill variant="info" @click="showDetailedView"
                 >Detailed view</b-button
               >
