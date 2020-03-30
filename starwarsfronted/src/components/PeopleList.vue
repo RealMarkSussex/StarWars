@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div class="container">
+    <div v-if="loading">
+      <b-icon icon="arrow-clockwise" animation="spin" font-scale="4"></b-icon>
+    </div>
+    <div class="container" v-else>
       <h1>Profiles</h1>
       <form @submit="filterPeople(searchTerm)">
-        <div class="input-group input-group-lg">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search"
-            v-model="searchTerm"
-          />
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              <b-icon-search></b-icon-search>
-            </button>
-          </div>
+        <div>
+          <b-input-group size="sm" class="mb-2">
+            <b-input-group-prepend is-text>
+              <b-icon icon="search"></b-icon>
+            </b-input-group-prepend>
+            <b-form-input
+              type="search"
+              placeholder="Search terms"
+              v-model="searchTerm"
+            ></b-form-input>
+          </b-input-group>
         </div>
       </form>
     </div>
@@ -32,16 +34,18 @@ export default {
   data() {
     return {
       people: [],
-      searchTerm: ""
+      searchTerm: "",
+      loading: true
     };
   },
   components: {
     People
   },
-  created() {
-    axios
-      .get("https://swapi.co/api/people/")
-      .then(res => (this.people = res.data));
+  mounted() {
+    axios.get("https://swapi.co/api/people/").then(res => {
+      this.people = res.data;
+      this.loading = false;
+    });
   },
   methods: {
     filterPeople(searchTerm) {

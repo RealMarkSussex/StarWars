@@ -1,24 +1,29 @@
 <template>
   <div>
-    <b-card no-body class="overflow-hidden" style="width: 540px;">
-      <b-row no-gutters>
-        <b-col md="6">
-          <b-card-img
-            :src="imageLink"
-            class="rounded-0"
-            height="200px"
-          ></b-card-img>
-        </b-col>
-        <b-col md="6">
-          <b-card-body title="Horizontal Card">
-            <b-card-text
-              >{{ person.name }} <br />
-              Their homeworld is {{ planet.name }}</b-card-text
-            >
-          </b-card-body>
-        </b-col>
-      </b-row>
-    </b-card>
+    <div v-if="loading">
+      <b-icon icon="arrow-clockwise" animation="spin" font-scale="3"></b-icon>
+    </div>
+    <div v-else>
+      <b-card no-body class="overflow-hidden" style="width: 540px;">
+        <b-row no-gutters>
+          <b-col md="6">
+            <b-card-img
+              :src="imageLink"
+              class="rounded-0"
+              height="200px"
+            ></b-card-img>
+          </b-col>
+          <b-col md="6">
+            <b-card-body title="Horizontal Card">
+              <b-card-text
+                >{{ person.name }} <br />
+                Their homeworld is {{ planet.name }}</b-card-text
+              >
+            </b-card-body>
+          </b-col>
+        </b-row>
+      </b-card>
+    </div>
   </div>
 </template>
 
@@ -35,11 +40,15 @@ export default {
     return {
       planet: undefined,
       imageLink:
-        "https://vignette.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755"
+        "https://vignette.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755",
+      loading: true
     };
   },
   created() {
-    axios.get(this.person.homeworld).then(res => (this.planet = res.data));
+    axios.get(this.person.homeworld).then(res => {
+      this.planet = res.data;
+      this.loading = false;
+    });
   },
   mounted() {
     if (this.person.name === "C-3PO") {
