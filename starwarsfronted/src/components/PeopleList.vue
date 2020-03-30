@@ -22,7 +22,9 @@
     </div>
     <br />
     <div v-for="person in people.results" :key="person.created" class="inline">
-      <People :person="person"></People>
+      <b-row
+        ><b-col> <People :person="person"></People> </b-col
+      ></b-row>
     </div>
   </div>
 </template>

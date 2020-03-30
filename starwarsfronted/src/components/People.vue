@@ -19,16 +19,22 @@
                 >{{ person.name }} <br />
                 Their homeworld is {{ planet.name }}</b-card-text
               >
+              <b-button pill variant="info" @click="showDetailedView"
+                >Detailed view</b-button
+              >
             </b-card-body>
           </b-col>
         </b-row>
       </b-card>
+      <modals-container></modals-container>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import DetailPerson from "./DetailPerson.vue";
+
 export default {
   props: {
     person: {
@@ -80,6 +86,11 @@ export default {
     } else if (this.person.name === "Obi-Wan Kenobi") {
       this.imageLink =
         "https://cnet4.cbsistatic.com/img/X0Sxfh3cMYWQn_CnugN9y4sbUZg=/1092x0/2019/08/16/65ef0311-d2a6-49f4-9b55-5fce9e60e3a1/obi2.jpg";
+    }
+  },
+  methods: {
+    showDetailedView() {
+      this.$modal.show(DetailPerson, { person: this.person });
     }
   }
 };
