@@ -25,7 +25,6 @@
           </b-col>
         </b-row>
       </b-card>
-      <modals-container></modals-container>
     </div>
   </div>
 </template>
@@ -49,6 +48,9 @@ export default {
     };
   },
   created() {
+    var tempStarships = [];
+    var tempVehicles = [];
+
     axios.get(this.person.homeworld).then(res => {
       this.person.homeworld = res.data;
     });
@@ -57,14 +59,22 @@ export default {
       this.person.species = res.data;
     });
 
-    axios.get(this.person.starships).then(res => {
-      this.person.starships = res.data;
-    });
+    for (var j = 0; j < this.person.starships.length; j++) {
+      axios.get(this.person.starships[j]).then(res => {
+        tempStarships.push(res.data);
+      });
+    }
 
-    axios.get(this.person.vehicles).then(res => {
-      this.person.vehicles = res.data;
-      this.loading = false;
-    });
+    for (var k = 0; k < this.person.vehicles.length; k++) {
+      axios.get(this.person.vehicles[k]).then(res => {
+        tempVehicles.push(res.data);
+      });
+    }
+
+    this.person.starships = tempStarships;
+    this.person.vehicles = tempVehicles;
+
+    this.loading = false;
   },
   mounted() {
     if (this.person.name === "C-3PO") {
@@ -100,7 +110,12 @@ export default {
   },
   methods: {
     showDetailedView() {
-      this.$modal.show(DetailPerson, { person: this.person });
+      this.$modal.show(
+        DetailPerson,
+        { person: this.person },
+        { draggable: true },
+        { height: "auto" }
+      );
     }
   }
 };

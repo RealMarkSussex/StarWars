@@ -1,11 +1,11 @@
 <template>
-  <h1>{{ starship.name }}</h1>
+  <h1>{{ vehicle.name }}</h1>
 </template>
 
 <script>
 export default {
   props: {
-    starship: {
+    vehicle: {
       type: Object,
       default: undefined
     }

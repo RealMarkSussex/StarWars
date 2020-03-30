@@ -7,7 +7,7 @@ import axios from "axios";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import VModal from "vue-js-modal";
 
-Vue.use(VModal, { dynamic: true });
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
