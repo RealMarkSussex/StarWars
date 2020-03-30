@@ -35,7 +35,7 @@ export default {
     return {
       planet: undefined,
       imageLink:
-        "https://vignette.wikia.nocookie.net/disney/images/0/0b/Starwars3-movie-screencaps.com-15461.jpg/revision/latest?cb=20160302190719"
+        "https://vignette.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755"
     };
   },
   created() {
@@ -68,7 +68,7 @@ export default {
     } else if (this.person.name === "Biggs Darklighter") {
       this.imageLink =
         "https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Biggsdarklighter.jpg/220px-Biggsdarklighter.jpg";
-    } else {
+    } else if (this.person.name === "Obi-Wan Kenobi") {
       this.imageLink =
         "https://cnet4.cbsistatic.com/img/X0Sxfh3cMYWQn_CnugN9y4sbUZg=/1092x0/2019/08/16/65ef0311-d2a6-49f4-9b55-5fce9e60e3a1/obi2.jpg";
     }
