@@ -21,6 +21,7 @@
               <b-button pill variant="info" @click="showDetailedView"
                 >Detailed view</b-button
               >
+              <b-button @click="exportPerson">Export to excel</b-button>
             </b-card-body>
           </b-col>
         </b-row>
@@ -116,6 +117,11 @@ export default {
         { draggable: true, scrollable: true },
         { height: "auto" }
       );
+    },
+    exportPerson: function() {
+      axios
+        .post("https://localhost:44332/api/Excel", this.person)
+        .then(res => console.log(res));
     }
   }
 };

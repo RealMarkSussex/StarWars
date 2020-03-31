@@ -13,10 +13,10 @@ namespace StarWarsBackend.Models
         public string Edited { get; set; }
         public string Gravity { get; set; }
         public string Name { get; set; }
-        public string OrbitalPeriod { get; set; }
+        public string Orbital_Period { get; set; }
         public string Population { get; set; }
-        public string RotationPeriod { get; set; }
-        public string SurfaceWater { get; set; }
+        public string Rotation_Period { get; set; }
+        public string Surface_Water { get; set; }
         public string Terrain { get; set; }
 
     }

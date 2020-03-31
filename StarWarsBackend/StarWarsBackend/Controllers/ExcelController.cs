@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StarWarsBackend.Models;
 
 namespace StarWarsBackend.Controllers
 {
@@ -11,9 +12,14 @@ namespace StarWarsBackend.Controllers
     [ApiController]
     public class ExcelController : ControllerBase
     {
-        public IActionResult Get()
+        [HttpPost]
+        public IActionResult Get([FromBody] Person person)
         {
-            return null;
+            if(person == null)
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
     }
 }
